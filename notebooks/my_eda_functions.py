@@ -1,6 +1,6 @@
 # importing libraries 
 
-import numpy as np, pandas as pd, matplotlib.pyplot as plt, seaborn as sns
+import numpy as np, pandas as pd, matplotlib.pyplot as plt, seaborn as sns, os
 
 def cat_col_summary(df, var):
     import numpy as np, pandas as pd, matplotlib.pyplot as plt, seaborn as sns
@@ -57,4 +57,39 @@ def cat_col_summary(df, var):
     print("="*100)
 
 
-    
+def cat_num_bivar(data, var1, var2):
+
+    # print(f"{var1} vs {var2}")
+    print(data.groupby(data[var1])[var2].median())
+    print("="*50)
+
+    print(f"Summary of {var1} vs {var2}")
+    print(data.groupby(data[var1])[var2].describe())
+    print("="*50)
+
+
+    plt.figure(figsize=(15, 8))
+    plt.subplot(2,2, 1)
+    sns.barplot(x = data[var1], y = data[var2], estimator= np.median)
+    plt.title(f"Bar Chart between {var1} and {var2}")
+
+    # boxplot 
+    plt.subplot(2, 2, 2)
+    sns.boxplot(x = data[var1], y = data[var2])
+    plt.title(f"Box plot for {var1} vs {var2}")
+    plt.show()
+
+
+def cat_cat_bivar(data, var1, var2):
+
+
+    plt.figure(figsize= (10, 8))
+    plt.subplot(2, 2, 1)
+    sns.barplot(data = data, x = var1, y = var2)
+    plt.title(f"{var1} vs {var2} Bar Plot")
+
+    # boxplot 
+    plt.subplot(2, 2, 2)
+    sns.boxplot(data= data, x = var1, y = var2)
+    plt.title(f"Box plot {var1} vs {var2}")
+    plt.show()
