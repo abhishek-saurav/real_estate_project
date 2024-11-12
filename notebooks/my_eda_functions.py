@@ -72,11 +72,13 @@ def cat_num_bivar(data, var1, var2):
     plt.subplot(2,2, 1)
     sns.barplot(x = data[var1], y = data[var2], estimator= np.median)
     plt.title(f"Bar Chart between {var1} and {var2}")
+    plt.xticks(rotation = 45)
 
     # boxplot 
     plt.subplot(2, 2, 2)
     sns.boxplot(x = data[var1], y = data[var2])
     plt.title(f"Box plot for {var1} vs {var2}")
+    plt.xticks(rotation = 45)
     plt.show()
 
 
